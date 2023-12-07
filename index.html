@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="shortcut icon" href="https://elastic.co/favicon.ico" type="image/x-icon" />
+    <title>Maps from Elasticsearch</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main class="container">
+      <header>
+        <h1>Christmas locations</h1>
+      </header>
+      <section class="search">
+        <form>
+          <label for="id">Find locations with: 
+            <span class="myarrow">
+              <input id="search"
+                list="christmasList" />
+            </span>
+            <datalist id="christmasList">
+              <option value="Christmas"></option>
+              <option value="Navidad"></option>
+              <option value="Nadal"></option>
+              <option value="Noël"></option>
+              <option value="Рождество Христово"></option>
+              <option value="クリスマス"></option>
+              <option value="크리스마스"></option>
+              <option value="Christmas Tree Farm"></option>
+            </datalist>
+          </label>
+          <button id="btn_search">Search</button>
+          <a href="https://discuss.elastic.co/t/346727">
+            + info
+          </a>
+        </form>
+      </section>
+      <section id="map"></section>
+      <script type="module" src="./app.js"></script>
+    </main>
+  </body>
+</html>

@@ -1,0 +1,42 @@
+@import url('https://unpkg.com/maplibre-gl@3.6.2/dist/maplibre-gl.css');
+
+body {
+  margin: 0;
+  padding: 0px;
+  font-family: Helvetica Neue, Arial, Helvetica, sans-serif;
+  color: rgb(63, 63, 63);
+}
+.container {
+  display: grid;
+  grid-template-rows: 50px 50px 1fr;
+  height: 100vh;
+}
+.container header, .container section.search {
+  padding: 0.5em;
+}
+.container header h1 {
+  margin: 0;
+  padding: 0;
+}
+
+#map {
+  height: 100%;
+}
+
+.myarrow {
+  margin-right: 0.5em;
+}
+
+.myarrow input::-webkit-calendar-picker-indicator {
+  display: none !important;/* remove default arrow */
+}
+.myarrow:after {
+    content: "▾";
+    margin-left: -20px; 
+    padding: .1em;
+    pointer-events: none;
+}
+
+h1 {
+  font-size: 1.5em;
+}

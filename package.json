@@ -1,0 +1,12 @@
+{
+  "name": "elasticsearch-webmapping",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "browser-sync start --port ${PORT:-8080} --server . --watch"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
