@@ -15,34 +15,35 @@ const ES_TILES = `${ES_HOST}/${ES_INDEX}/_mvt/${ES_FIELD}/{z}/{x}/{y}`;
 /* Default query */
 const DEFAULT_QUERY = "Santa Claus";
 
-/* Build a VT query payload */
-const getBody = function (phrase) {
-  const query = document.getElementById("search").value || phrase || DEFAULT_QUERY;
-  return {
-    grid_precision: 0,
-    exact_bounds: true,
-    extent: 4096,
-    fields: ["name", "category_main", "category_alt", "source", "social"],
-    query: {
-      bool: {
-        filter: [
-          {
-            multi_match: {
-              lenient: true,
-              query: `*${query}*`,
-              type: "phrase",
-            },
-          },
-        ],
-      },
-    },
-  }
-};
+
 const getDynamicTransFormRequest = function (url, resourceType) {
   /* This function enriches the HTTP request to include
               the ES search body, change to a POST request, and include
               the Content-Type header */
   if (resourceType == "Tile" && url.startsWith(ES_HOST)) {
+    const query = document.getElementById("search").value || DEFAULT_QUERY;
+    
+    /* Build a VT query payload */
+    const body = {
+      grid_precision: 0,
+      exact_bounds: true,
+      extent: 4096,
+      fields: ["name", "category_main", "category_alt", "source", "social"],
+      query: {
+        bool: {
+          filter: [
+            {
+              multi_match: {
+                lenient: true,
+                query: `*${query}*`,
+                type: "phrase",
+              },
+            },
+          ],
+        },
+      },
+    }
+
     return {
       url: url,
       method: "POST",
@@ -50,7 +51,7 @@ const getDynamicTransFormRequest = function (url, resourceType) {
         "Content-Type": "application/json",
         Authorization: `ApiKey ${ES_APIKEY}`,
       },
-      body: JSON.stringify(getBody(DEFAULT_QUERY)),
+      body: JSON.stringify(body),
     };
   }
 };
